@@ -1,17 +1,15 @@
-import MovieDetailContainer from '@/containers/MovieDetail/MovieDetailContainer';
-import { useLocalSearchParams } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Colors } from '@/constants/colors';
 
-const MovieDetailScreen = () => {
-    const { id } = useLocalSearchParams<{ id: string }>();
-
+const SignUp = () => {
     return (
         <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-            <MovieDetailContainer id={id} />
+            <StatusBar style="light" backgroundColor={Colors.primary} />
+            {/* Add your sign up form components here */}
         </SafeAreaView>
     );
 };
@@ -23,4 +21,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MovieDetailScreen;
+export default SignUp;

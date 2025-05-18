@@ -5,7 +5,6 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -48,7 +47,6 @@ const RootLayout = () => {
         <ErrorBoundary>
             <GestureHandlerRootView style={styles.container}>
                 <ThemeProvider value={DEFAULT_THEME as Theme}>
-                    <StatusBar style="light" backgroundColor={DEFAULT_THEME.colors.primary} />
                     <Toaster swipeToDismissDirection="left" position="top-center" closeButton />
                     <SafeAreaProvider>
                         <Stack
@@ -59,9 +57,9 @@ const RootLayout = () => {
                                 },
                             }}
                         >
-                            <Stack.Screen name={Routes.Movies} options={{ headerShown: false }} />
+                            <Stack.Screen name={Routes.SignIn} options={{ headerShown: false }} />
                             <Stack.Screen
-                                name={Routes.MovieDetail}
+                                name={Routes.SignUp}
                                 getId={({ params }) => params?.id}
                                 options={{ headerShown: false }}
                             />

@@ -1,29 +1,42 @@
 import { pathGenerator } from '@/utilities/services/router.service';
 import Fonts from '@/utilities/shared/Fonts';
 import { scale, verticalScale } from '@/utilities/shared/Metrics';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
 import { Colors } from '@/constants/colors';
 import Routes from '@/constants/routes';
 
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import ImageView from '@/components/ImageView/ImageView';
 
 const Index = () => {
     const router = useRouter();
 
     const handleGetStarted = () => {
-        router.push(pathGenerator(Routes.Movies));
+        router.push(pathGenerator(Routes.SignIn));
     };
 
     return (
-        <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
+        <View style={styles.container}>
+            <StatusBar hidden />
+            <ImageView
+                source={require('@/assets/images/backgroundImage.png')}
+                containerStyle={styles.backgroundImage}
+                contentFit="cover"
+                transition={1000}
+            />
             <View style={styles.content}>
-                <Image source={require('@/assets/images/icon.png')} style={styles.logo} resizeMode="contain" />
-                <Text style={styles.title}>Welcome to Movie App</Text>
-                <Text style={styles.subtitle}>Discover and explore your favorite movies in one place</Text>
+                <Image
+                    source={require('@/assets/images/app-icon.png')}
+                    style={styles.logo}
+                    contentFit="contain"
+                    transition={1000}
+                />
+                <Text style={styles.title}>Welcome to Auth Ease</Text>
+                <Text style={styles.subtitle}>Secure authentication made simple and easy</Text>
                 <PrimaryButton
                     title="Get Started"
                     onPress={handleGetStarted}
@@ -31,14 +44,19 @@ const Index = () => {
                     textStyle={styles.buttonText}
                 />
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.primary,
+        // backgroundColor: Colors.error,
+    },
+    backgroundImage: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
     },
     content: {
         flex: 1,

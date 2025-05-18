@@ -1,14 +1,15 @@
-import MoviesContainer from '@/containers/Movies/MoviesContainer';
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Colors } from '@/constants/colors';
 
-const Movies = () => {
+const SignIn = () => {
     return (
         <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-            <MoviesContainer />
+            <StatusBar style="light" backgroundColor={Colors.primary} />
+            {/* Add your sign in form components here */}
         </SafeAreaView>
     );
 };
@@ -20,4 +21,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Movies;
+export default SignIn;
