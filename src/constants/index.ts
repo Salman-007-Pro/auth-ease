@@ -4,5 +4,5 @@ export const StorageKeys = {
 };
 
 export const API_URL = {
-    BASE_URL: 'https://freetestapi.com/api/v1',
+    BASE_URL: 'http://localhost:3000',
 };

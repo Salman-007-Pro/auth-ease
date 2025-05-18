@@ -1,4 +1,5 @@
 import { ErrorBoundary } from '@/Errors/ErrorBoundary';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { FontVariations } from '@/utilities/shared/Fonts';
 import type { Theme } from '@react-navigation/native';
 import { ThemeProvider } from '@react-navigation/native';
@@ -44,30 +45,32 @@ const RootLayout = () => {
         return null;
     }
     return (
-        <ErrorBoundary>
-            <GestureHandlerRootView style={styles.container}>
-                <ThemeProvider value={DEFAULT_THEME as Theme}>
-                    <Toaster swipeToDismissDirection="left" position="top-center" closeButton />
-                    <SafeAreaProvider>
-                        <Stack
-                            screenOptions={{
-                                headerShown: false,
-                                contentStyle: {
-                                    backgroundColor: DEFAULT_THEME.colors.background,
-                                },
-                            }}
-                        >
-                            <Stack.Screen name={Routes.SignIn} options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name={Routes.SignUp}
-                                getId={({ params }) => params?.id}
-                                options={{ headerShown: false }}
-                            />
-                        </Stack>
-                    </SafeAreaProvider>
-                </ThemeProvider>
-            </GestureHandlerRootView>
-        </ErrorBoundary>
+        <AuthProvider>
+            <ErrorBoundary>
+                <GestureHandlerRootView style={styles.container}>
+                    <ThemeProvider value={DEFAULT_THEME as Theme}>
+                        <Toaster swipeToDismissDirection="left" position="top-center" closeButton />
+                        <SafeAreaProvider>
+                            <Stack
+                                screenOptions={{
+                                    headerShown: false,
+                                    contentStyle: {
+                                        backgroundColor: DEFAULT_THEME.colors.background,
+                                    },
+                                }}
+                            >
+                                <Stack.Screen name={Routes.SignIn} options={{ headerShown: false }} />
+                                <Stack.Screen
+                                    name={Routes.SignUp}
+                                    getId={({ params }) => params?.id}
+                                    options={{ headerShown: false }}
+                                />
+                            </Stack>
+                        </SafeAreaProvider>
+                    </ThemeProvider>
+                </GestureHandlerRootView>
+            </ErrorBoundary>
+        </AuthProvider>
     );
 };
 
